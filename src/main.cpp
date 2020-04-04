@@ -1,36 +1,72 @@
 #include<iostream>
-//#include<ncurses>
+#include<ncurses.h>
 #include<fstream>
 #include<string>
-#include<algorithm>
 #include<array>
 using namespace std;
-int Array(int arraySize, int newSize){
-  arraySize=1;
-  newSize=arraySize++;
-  newSize++;
 
-  return newSize;
+int readLargestIdFromFile(){
+  int largestId = 0;
+  string tmp;
+
+  ifstream taskRead;
+  taskRead.open("tasks.txt");
+
+  /*
+   * While tasks.txt is not at its end: store the lines in tmp.
+   * Find the : in tmp.
+   * Store the beginning of the line untill : in digits.
+   * Convert string digits to int num.
+   */
+   while(!taskRead.eof()){
+     taskRead >> tmp;
+
+     int i = tmp.find(":");
+     string digits = tmp.substr(0, i);
+     int num = stoi(digits);
+
+     if (largestId < num) largestId = num;
+   }
+   taskRead.close();
+   return largestId;
+}
+
+int taskIdCounter(int setId){
+  static int taskId=1; 
+  if(setId){
+    taskId=setId;
+  }
+  return taskId++;
+}
+
+int taskIdCounter(){
+  return taskIdCounter(0);
+}
+
+string getUserInput(string question){
+  char answer[100];
+  printw("%s", (question).c_str() );
+  getstr(answer);
+  return answer;
+}
+
+void writeTaskToFile(){
+  string newTask = getUserInput("Type your new task here: ");
+
+  ofstream taskWrite("tasks.txt",ios_base::app); 
+  taskWrite << taskIdCounter() << ":" << newTask << ":" << endl;
+  taskWrite.close();
+  taskIdCounter();
 }
 
 int main(){
-  int newSize = Array();
-  cout << newSize;
-  //int taskId[10];
-  //int sizeTaskId=sizeof(taskId)/sizeof(taskId[0]);
-  //string task[10];
+  initscr();
+  cbreak();
 
-  //ifstream taskData("tasks.txt");
-  //for (int i=0; i<sizeTaskId;i++){
-  //  taskData>>taskId[i]>>task[i];
-  //  cout << taskId[i] << " " << task[i] << endl;
-  //}
+  taskIdCounter(readLargestIdFromFile()); // Check the largest id from the task file, and increase it with 1.
+  writeTaskToFile();
 
-  //int max= *max_element(taskId,taskId+sizeTaskId);
-
-  //cout << sizeTaskId << " " << max << endl;
-  //initscr();
-  //cbreak();
-
-
+  getch();
+  endwin();
+  return 0;
 }
