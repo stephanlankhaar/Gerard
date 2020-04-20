@@ -1,7 +1,6 @@
 #pragma once
 
 #include "common.h"
-
 using namespace std;
 
 int getTaskId(string question){
@@ -11,14 +10,7 @@ int getTaskId(string question){
   return idAnswer;
 }
 
-string updatedTask(string question_1){
-  char answer[100];
-  printw("%s",(question_1).c_str() );
-  getstr(answer);
-  return answer;
-}
-
-int updateFromDb(){
+int deleteFromDb(){
    sqlite3 *db;
    char *zErrMsg = 0;
    int rc;
@@ -35,11 +27,9 @@ int updateFromDb(){
    }
 
    /* Create merged SQL statement */
-   char selectedId[20]={getTaskId("Type here the taskid: ")};
-   getch();
-   string updateTask = updatedTask("\nType the change here: ");
+   char selectedId[20]={getTaskId("Type the task id here: ")};
    char sql[500];
-   snprintf(sql,500, "UPDATE tasks set task='%s' where taskId=%i;",(updateTask).c_str(),atoi(selectedId));
+   snprintf(sql,500, "delete from tasks where taskId=%i;",atoi(selectedId));
    //sql = "DELETE from COMPANY where ID=2; " \
          "SELECT * from COMPANY";
 
@@ -58,16 +48,13 @@ int updateFromDb(){
    return 0;
 }
 
-int main(){
-  initscr();
-  int input=getch();
-  keypad(stdscr,true);
-  if(input!=KEY_F(5)){
-    selectFromDb();
-  }
-  updateFromDb();
-  getch();
-  getch();
-  endwin();
-  return 0;
+void deleteTask(){
+   clear();
+   selectFromDb();
+   refresh();
+   getch();
+   deleteFromDb();
+   getch();
 }
+
+

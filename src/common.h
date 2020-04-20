@@ -9,5 +9,8 @@
 #include "callbacks.h"
 #include "updateHomescreen.h"
 #include "newTask.h"
+#include "deleteTask.h"
+#include "updateTask.h"
+#include "menu.h"
 
 using namespace std;

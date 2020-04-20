@@ -4,13 +4,6 @@
 
 using namespace std;
 
-int getTaskId(string question){
-  int idAnswer;
-  printw("%s", (question).c_str() );
-  idAnswer = getch();
-  return idAnswer;
-}
-
 string updatedTask(string question_1){
   char answer[100];
   printw("%s",(question_1).c_str() );
@@ -37,7 +30,7 @@ int updateFromDb(){
    /* Create merged SQL statement */
    char selectedId[20]={getTaskId("Type here the taskid: ")};
    getch();
-   string updateTask = updatedTask("\nType the change here: ");
+   string updateTask = updatedTask("\r\nType the change here: ");
    char sql[500];
    snprintf(sql,500, "UPDATE tasks set task='%s' where taskId=%i;",(updateTask).c_str(),atoi(selectedId));
    //sql = "DELETE from COMPANY where ID=2; " \
@@ -58,16 +51,10 @@ int updateFromDb(){
    return 0;
 }
 
-int main(){
-  initscr();
-  int input=getch();
-  keypad(stdscr,true);
-  if(input!=KEY_F(5)){
-    selectFromDb();
-  }
-  updateFromDb();
-  getch();
-  getch();
-  endwin();
-  return 0;
+void updateTask(){
+   clear();
+   selectFromDb();
+   getch();
 }
+
+

@@ -56,3 +56,8 @@ int writeToDb(){
   }
   return 0;
 }
+
+void newTask(){
+  writeToDb();
+  getch();
+}
