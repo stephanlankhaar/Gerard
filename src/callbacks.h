@@ -14,7 +14,7 @@ static int idCallback(void *data, int argc, char**argv, char **azColName){
 
 static int stdCallback(void *data, int argc, char **argv, char **azColName){    
   int i;    
-  fprintf(stderr, "%s: ", (const char*)data);    
+  fprintf(stderr, "%s", (const char*)data);    
     
   for(i = 0; i<argc; i++){    
      printf("%s = %s\r\n", azColName[i], argv[i] ? argv[i] : "NULL");    
