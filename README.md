@@ -5,6 +5,7 @@ A simple terminal user interface task manager, written in C++.
 
 ### Requirements:
 - The ncurses library
+
 For debian based systems:
 ```
 sudo apt install lib-ncurses5-dev
@@ -15,6 +16,7 @@ pacman -S ncurses
 ```
 
 - The sqlite3 library
+
 For debian based systems:
 ```
 sudo apt install libsqlite-3
