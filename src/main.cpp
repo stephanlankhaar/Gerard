@@ -22,8 +22,6 @@ int main(int argc, char* argv[]) {
         endwin();
         return 0;
       default:
-        clear();
-        move(0,1);
         selectFromDb();
         getch();
         switch(userInput){
