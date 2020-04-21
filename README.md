@@ -30,3 +30,10 @@ pacman -S sqlite
 ```
 g++ main.cpp -o gerard -lncurses -lsqlite3
 ```
+
+## What if I have it compiled?
+
+You can run Gerard using the following command:
+```
+./gerard
+```
