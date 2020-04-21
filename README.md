@@ -3,7 +3,7 @@ A simple terminal user interface task manager, written in C++.
 
 ## How to install
 
-Requirements:
+### Requirements:
 - The ncurses library
 For debian based systems:
 ```
@@ -24,7 +24,7 @@ For arch based systems:
 pacman -S sqlite
 ```
 
-How to compile this program?
+### How to compile this program?
 ```
 g++ main.cpp -o gerard -lncurses -lsqlite3
 ```
