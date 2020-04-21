@@ -4,11 +4,11 @@
 int main(int argc, char* argv[]) {
   initscr();
   
-  printw("Welcome to Gerard, press f9 to open the menu and f8 to update homescreen. If you're done with the program press f5!");
+  mvprintw(100,0,"Welcome to Gerard, press f9 to open the menu and f8 to update homescreen. If you're done with the program press f5!");
   keypad(stdscr,true);
 
   // Get userinput and if <F9> is pressed open the menu.
-  int userInput = getTaskId("Menu: ");
+  int userInput = getTaskId("\nMenu: ");
   do{
     switch(userInput){
       // Make a simple menu with the menuItems, and let the user select an item of the list
@@ -22,6 +22,8 @@ int main(int argc, char* argv[]) {
         endwin();
         return 0;
       default:
+        clear();
+        move(0,1);
         selectFromDb();
         getch();
         switch(userInput){
