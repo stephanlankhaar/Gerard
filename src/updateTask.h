@@ -24,13 +24,13 @@ int updateFromDb(){
       fprintf(stderr, "Can't open database: %s\r\n", sqlite3_errmsg(db));
       return(0);
    } else {
-      fprintf(stderr, "Opened database successfully\r\n");
+      fprintf(stderr, " ");
    }
 
    /* Create merged SQL statement */
    char selectedId[20]={getTaskId("Type here the taskid: ")};
    getch();
-   string updateTask = updatedTask("\r\nType the change here: ");
+   string updateTask = updatedTask("\nType the change here: ");
    char sql[500];
    snprintf(sql,500, "UPDATE tasks set task='%s' where taskId=%i;",(updateTask).c_str(),atoi(selectedId));
    //sql = "DELETE from COMPANY where ID=2; " \
@@ -45,15 +45,15 @@ int updateFromDb(){
       fprintf(stderr, "SQL error: %s\r\n", zErrMsg);
       sqlite3_free(zErrMsg);
    } else {
-      fprintf(stdout, "Operation done successfully\r\n");
+      fprintf(stdout, " ");
    }
    sqlite3_close(db);
    return 0;
 }
 
 void updateTask(){
-   clear();
    selectFromDb();
+   updateFromDb();
    getch();
 }
 

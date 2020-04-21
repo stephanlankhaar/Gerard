@@ -47,7 +47,7 @@ int selectFromDb(){
      fprintf(stderr, "Can't open database: %s\r\n", sqlite3_errmsg(db));
      return(0);
   } else {
-     fprintf(stderr, "Opened database successfully\r\n");
+     fprintf(stderr, "\r\n");
   }
                                  
   /* Create SQL statement */
@@ -60,7 +60,7 @@ int selectFromDb(){
      fprintf(stderr, "SQL error: %s\r\n", zErrMsg);
      sqlite3_free(zErrMsg);
   } else {
-     fprintf(stdout, "Operation done successfully\r\n");
+     fprintf(stdout, "\r\n");
   }
   sqlite3_close(db);
   return(0);

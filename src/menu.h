@@ -4,16 +4,16 @@
 
 using namespace std;
 
-const char *menuItems[]={"1: New Task","2: Update Task","3: Delete Task","4: Update homescreen\n"};
+const char *menuItems[]={"1: New Task\n","2: Update Task\n","3: Delete Task\n","4: Update homescreen\n" "5: Exit\n"};
 int y=0;
 
 void menu(){
     clear();
-    for(int i = 0; i<4; i++){
-        mvprintw(y++,0,menuItems[i]);
+    for(int i = 0; i<5; i++){
+        printw(menuItems[i]);
     }
-    refresh();
     int choice = getTaskId("Select a number from the menu: ");
+    do{
     switch (choice)
     {
     case 49:
@@ -33,7 +33,15 @@ void menu(){
         selectFromDb();
         getch();
         break;
-    default:
+    case 53:
+        clear();
+        printw("See ya!");
+        getch();
+        endwin();
         break;
+    default:
+        refresh();  
     }
+    }
+    while(choice!=53);
 }
